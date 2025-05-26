@@ -1,18 +1,25 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <unordered_map>
+#include <string>
 using namespace std;
 
 int main() {
-    string s;
-    cin>>s;
-    int count=1;
-    for(int i=1;i<s.length();i++){
-        if(s[i]==s[i-1]) count++;
-        else count=1;
-        if(count==7){
-            cout<<"YES"<<endl;
-            return 0;
+    int n;
+    cin >> n;
+    unordered_map<string, int> score;
+    string team;
+    for (int i = 0; i < n; ++i) {
+        cin >> team;
+        score[team]++;
+    }
+    string winner;
+    int maxGoals = 0;
+    for (const auto& entry : score) {
+        if (entry.second > maxGoals) {
+            maxGoals = entry.second;
+            winner = entry.first;
         }
     }
-    cout<<"NO"<<endl;
+    cout << winner << endl;
     return 0;
 }
